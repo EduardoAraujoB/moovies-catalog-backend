@@ -3,5 +3,6 @@
   "ext": "ts",
   "execMap": {
     "ts": "sucrase-node src/server.ts"
-  }
+  },
+  "ignore": ["__tests__"]
 }
