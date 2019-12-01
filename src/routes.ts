@@ -2,8 +2,8 @@ import { Router } from 'express';
 
 const routes = Router();
 
-routes.get('/', (req, res) => {
-  res.send('Hello World');
+routes.get('/', async (req, res) => {
+  res.send('Hello Bugs');
 });
 
 export default routes;

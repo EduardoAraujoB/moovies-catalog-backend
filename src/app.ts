@@ -5,6 +5,8 @@ import cors from 'cors';
 
 import routes from './routes';
 
+import './database';
+
 class App {
   public express: express.Application;
 
