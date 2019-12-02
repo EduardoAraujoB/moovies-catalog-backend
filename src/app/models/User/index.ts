@@ -1,6 +1,9 @@
 import { Sequelize, Model, DataTypes } from 'sequelize';
 
 class User extends Model {
+  public id!: number;
+  public name!: string;
+  public email!: string;
   public static initialize(sequelize: Sequelize): void {
     User.init(
       {
