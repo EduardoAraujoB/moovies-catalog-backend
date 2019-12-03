@@ -21,6 +21,8 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
+    "arrow-parens": "off",
+    "arrow-body-style": "off",
     "camelcase": "off",
     "class-methods-use-this": "off",
     "lines-between-class-members": "off",
