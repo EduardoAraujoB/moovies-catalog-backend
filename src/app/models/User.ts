@@ -1,26 +1,34 @@
 import { Sequelize, Model, DataTypes } from 'sequelize';
+import bcrypt from 'bcryptjs';
 
 class User extends Model {
   public id!: number;
   public name!: string;
   public email!: string;
+  public password!: string;
+  public password_hash!: string;
   public static initialize(sequelize: Sequelize): void {
     User.init(
       {
         name: {
           type: DataTypes.STRING,
-          allowNull: false,
         },
         email: {
           type: DataTypes.STRING,
-          allowNull: true,
+        },
+        password: {
+          type: DataTypes.VIRTUAL,
         },
         password_hash: {
           type: DataTypes.STRING,
-          allowNull: false,
         },
       },
       {
+        hooks: {
+          beforeSave: async (user): Promise<void> => {
+            user.password_hash = await bcrypt.hash(user.password, 8);
+          },
+        },
         sequelize,
       },
     );
