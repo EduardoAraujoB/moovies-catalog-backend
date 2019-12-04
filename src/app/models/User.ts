@@ -33,6 +33,10 @@ class User extends Model {
       },
     );
   }
+
+  checkPassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password_hash);
+  }
 }
 
 export default User;
