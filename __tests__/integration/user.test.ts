@@ -4,11 +4,7 @@ import app from '../../src/app';
 
 import factory from '../factories';
 import truncate from '../util/truncate';
-
-interface UserAttrs {
-  password_hash?: string;
-  password?: string;
-}
+import UserAttrs from '../interfaces/user';
 
 describe('User', () => {
   beforeEach(async () => {

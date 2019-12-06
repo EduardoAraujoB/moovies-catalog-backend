@@ -2,7 +2,9 @@ import request from 'supertest';
 
 import app from '../../src/app';
 
+import factory from '../factories';
 import truncate from '../util/truncate';
+import UserAttrs from '../interfaces/user';
 
 describe('Session', () => {
   beforeEach(async () => {
@@ -10,19 +12,17 @@ describe('Session', () => {
   });
 
   it('should be able to create a session', async () => {
+    const user = await factory.attrs<UserAttrs>('User');
+
     await request(app)
       .post('/user')
-      .send({
-        name: 'test',
-        email: 'test@mail.com',
-        password: '123456',
-      });
+      .send(user);
 
     const response = await request(app)
       .post('/session')
       .send({
-        email: 'test@mail.com',
-        password: '123456',
+        email: user.email,
+        password: user.password,
       });
 
     expect(response.status).toBe(200);
