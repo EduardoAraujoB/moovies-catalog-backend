@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
 import User from '../models/User';
+import authConfig from '../../config/auth';
 
 class SessionController {
   async store(req: Request, res: Response): Promise<Response> {
@@ -25,8 +26,8 @@ class SessionController {
         name,
         email,
       },
-      token: jwt.sign({ id }, process.env.APP_SECRET, {
-        expiresIn: '7d',
+      token: jwt.sign({ id }, authConfig.secret, {
+        expiresIn: authConfig.expiresIn,
       }),
     });
   }
