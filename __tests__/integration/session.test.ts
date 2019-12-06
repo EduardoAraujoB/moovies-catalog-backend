@@ -12,11 +12,28 @@ describe('Session', () => {
   });
 
   it('should be able to create a session', async () => {
-    const user = await factory.attrs<UserAttrs>('User');
+    const { name, email, password } = await factory.attrs<UserAttrs>('User');
 
     await request(app)
       .post('/user')
-      .send(user);
+      .send({
+        name,
+        email,
+        password,
+      });
+
+    const response = await request(app)
+      .post('/session')
+      .send({
+        email,
+        password,
+      });
+
+    expect(response.status).toBe(200);
+  });
+
+  it('should return an error with an invalid email', async () => {
+    const user = await factory.attrs<UserAttrs>('User');
 
     const response = await request(app)
       .post('/session')
@@ -25,6 +42,6 @@ describe('Session', () => {
         password: user.password,
       });
 
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(401);
   });
 });
