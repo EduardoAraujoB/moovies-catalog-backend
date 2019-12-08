@@ -44,4 +44,24 @@ describe('Session', () => {
 
     expect(response.status).toBe(401);
   });
+  it('should return an error with a invalid password', async () => {
+    const { name, email } = await factory.attrs<UserAttrs>('User');
+
+    await request(app)
+      .post('/user')
+      .send({
+        name,
+        email,
+        password: 'awdawda',
+      });
+
+    const response = await request(app)
+      .post('/session')
+      .send({
+        email,
+        password: 'bcdefg',
+      });
+
+    expect(response.status).toBe(401);
+  });
 });
