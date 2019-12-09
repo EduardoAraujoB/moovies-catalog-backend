@@ -47,4 +47,20 @@ describe('Authentication Middleware', () => {
 
     expect(response.status).toBe(401);
   });
+
+  it('should return an error with a mal formated auth header', async () => {
+    const response = await request(app)
+      .get('/hello')
+      .set('Authorization', token);
+
+    expect(response.status).toBe(401);
+  });
+
+  it('should return an error with a mal formated token', async () => {
+    const response = await request(app)
+      .get('/hello')
+      .set('Authorization', `barer ${token}`);
+
+    expect(response.status).toBe(401);
+  });
 });

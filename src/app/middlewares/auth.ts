@@ -19,7 +19,17 @@ export default async (
     return res.status(401).json({ error: 'Token not provided' });
   }
 
-  const [, token] = authHeader.split(' ');
+  const parts = authHeader.split(' ');
+
+  if (!(parts.length === 2)) {
+    return res.status(401).send({ error: 'Token format error' });
+  }
+
+  const [scheme, token] = parts;
+
+  if (!/^Bearer$/i.test(scheme)) {
+    return res.status(401).send({ error: 'Token malformated' });
+  }
 
   try {
     const decoded = await promisify(jwt.verify)(token, authConfig.secret);
