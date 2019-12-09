@@ -63,4 +63,12 @@ describe('Authentication Middleware', () => {
 
     expect(response.status).toBe(401);
   });
+
+  it('should return an error with an invalid token', async () => {
+    const response = await request(app)
+      .get('/hello')
+      .set('Authorization', `Bearer ${token}a`);
+
+    expect(response.status).toBe(401);
+  });
 });
