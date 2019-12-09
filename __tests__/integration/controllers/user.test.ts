@@ -1,10 +1,10 @@
 import request from 'supertest';
 import bcrypt from 'bcryptjs';
-import app from '../../src/app';
+import app from '../../../src/app';
 
-import factory from '../factories';
-import truncate from '../util/truncate';
-import UserAttrs from '../interfaces/user';
+import factory from '../../factories';
+import truncate from '../../util/truncate';
+import UserAttrs from '../../interfaces/user';
 
 describe('User', () => {
   beforeEach(async () => {
