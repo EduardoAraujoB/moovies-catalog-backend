@@ -32,6 +32,17 @@ describe('Session', () => {
     expect(response.status).toBe(200);
   });
 
+  it('should return an error with an invalid request body', async () => {
+    const { email } = await factory.attrs<UserAttrs>('User');
+    const response = await request(app)
+      .post('/session')
+      .send({
+        email,
+      });
+
+    expect(response.status).toBe(400);
+  });
+
   it('should return an error with an invalid email', async () => {
     const user = await factory.attrs<UserAttrs>('User');
 

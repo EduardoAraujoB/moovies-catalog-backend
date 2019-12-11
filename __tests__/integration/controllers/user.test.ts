@@ -31,6 +31,19 @@ describe('User', () => {
     expect(response.body).toHaveProperty('id');
   });
 
+  it('should return an error with an invalid request body', async () => {
+    const { email, password } = await factory.attrs('User');
+
+    const response = await request(app)
+      .post('/user')
+      .send({
+        email,
+        password,
+      });
+
+    expect(response.status).toBe(400);
+  });
+
   it('should not be able to register with a duplicated email', async () => {
     const user: object = await factory.attrs('User');
 
