@@ -34,14 +34,6 @@ describe('Authentication Middleware', () => {
     await truncate();
   });
 
-  it('should be able to authenticate via token', async () => {
-    const response = await request(app)
-      .get('/hello')
-      .set('Authorization', `Bearer ${token}`);
-
-    expect(response.status).toBe(200);
-  });
-
   it('should return an error when a token is not provided', async () => {
     const response = await request(app).get('/hello');
 
@@ -70,5 +62,13 @@ describe('Authentication Middleware', () => {
       .set('Authorization', `Bearer ${token}a`);
 
     expect(response.status).toBe(401);
+  });
+
+  it('should be able to authenticate via token', async () => {
+    const response = await request(app)
+      .get('/hello')
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response.status).toBe(200);
   });
 });

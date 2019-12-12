@@ -11,27 +11,6 @@ describe('Session', () => {
     await truncate();
   });
 
-  it('should be able to create a session', async () => {
-    const { name, email, password } = await factory.attrs<UserAttrs>('User');
-
-    await request(app)
-      .post('/user')
-      .send({
-        name,
-        email,
-        password,
-      });
-
-    const response = await request(app)
-      .post('/session')
-      .send({
-        email,
-        password,
-      });
-
-    expect(response.status).toBe(200);
-  });
-
   it('should return an error with an invalid request body', async () => {
     const { email } = await factory.attrs<UserAttrs>('User');
     const response = await request(app)
@@ -74,5 +53,26 @@ describe('Session', () => {
       });
 
     expect(response.status).toBe(401);
+  });
+
+  it('should be able to create a session', async () => {
+    const { name, email, password } = await factory.attrs<UserAttrs>('User');
+
+    await request(app)
+      .post('/user')
+      .send({
+        name,
+        email,
+        password,
+      });
+
+    const response = await request(app)
+      .post('/session')
+      .send({
+        email,
+        password,
+      });
+
+    expect(response.status).toBe(200);
   });
 });
