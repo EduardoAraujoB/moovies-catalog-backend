@@ -42,7 +42,7 @@ This project aims to create a system of a moovie catalog
   
 **Authentication**
  
-  - `APP_SECRET`: It's a secret used to generate the tokens of aplicattion
+  - `APP_SECRET`: It's a secret used to generate the tokens of the aplicattion
   - `TOKEN_DURATION`: Use it to set the expiration date of the aplicattion token
 
 **Database**
