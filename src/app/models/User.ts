@@ -8,7 +8,7 @@ class User extends Model {
   public password!: string;
   public password_hash!: string;
   public static initialize(sequelize: Sequelize): void {
-    User.init(
+    this.init(
       {
         name: {
           type: DataTypes.STRING,

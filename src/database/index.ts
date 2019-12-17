@@ -1,10 +1,11 @@
 import { Sequelize } from 'sequelize';
 
 import User from '../app/models/User';
+import Moovie from '../app/models/Moovie';
 
 import databaseConfig from '../config/database';
 
-const models = [User];
+const models = [User, Moovie];
 
 class Database {
   connection: Sequelize;
