@@ -29,6 +29,7 @@
     "lines-between-class-members": "off",
     "no-param-reassign": "off",
     "@typescript-eslint/camelcase": "off",
+    "object-curly-newline": "off",
     "no-unused-vars": [
       "error",
       {
