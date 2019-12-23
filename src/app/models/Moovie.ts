@@ -20,9 +20,6 @@ class Moovie extends Model {
         release: {
           type: DataTypes.DATE,
         },
-        user_id: {
-          type: DataTypes.INTEGER,
-        },
       },
       {
         sequelize,
