@@ -33,6 +33,17 @@ describe('Moovie', () => {
     await truncate();
   });
 
+  it('should return an error with an invalid request body', async () => {
+    const response = await request(app)
+      .post('/moovie')
+      .send({
+        name: 'Test Moovie',
+      })
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(response.status).toBe(400);
+  });
+
   it('should be able to create a moovie', async () => {
     const response = await request(app)
       .post('/moovie')
