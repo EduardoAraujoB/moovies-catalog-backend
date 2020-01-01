@@ -11,6 +11,8 @@ const routes = Router();
 routes.post('/user', UserController.store);
 routes.post('/session', SessionController.store);
 
+routes.get('/moovies', MoovieController.index);
+
 routes.use(authMiddleware);
 
 routes.post('/moovie', MoovieController.store);

@@ -8,6 +8,19 @@ interface RequestInterface extends Request {
 }
 
 class UserController {
+  async index(req: Request, res: Response): Promise<Response> {
+    const { page = 1 } = req.query;
+
+    const moovies = await Moovie.findAll({
+      order: ['release'],
+      attributes: ['id', 'name', 'description', 'release'],
+      limit: 20,
+      offset: (page - 1) * 20,
+    });
+
+    return res.json(moovies);
+  }
+
   async store(req: RequestInterface, res: Response): Promise<Response> {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
