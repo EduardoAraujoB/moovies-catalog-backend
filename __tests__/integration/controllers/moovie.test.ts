@@ -33,6 +33,12 @@ describe('Moovie', () => {
     await truncate();
   });
 
+  it('should be able to list all moovies', async () => {
+    const response = await request(app).get('/moovies');
+
+    expect(response.status).toBe(200);
+  });
+
   it('should return an error with an invalid request body', async () => {
     const response = await request(app)
       .post('/moovie')
