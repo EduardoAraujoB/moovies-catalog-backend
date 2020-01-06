@@ -23,4 +23,3 @@ module.exports = {
 
   down: queryInterface => queryInterface.dropTable('categories'),
 };
-
